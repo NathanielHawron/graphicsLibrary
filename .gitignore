@@ -1,0 +1,10 @@
+bin
+saves
+res
+.o
+.vscode
+vendor
+src
+main.cpp
+makefile
+*.bash
