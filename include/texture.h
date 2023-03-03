@@ -36,7 +36,7 @@ namespace graphics{
         unsigned int id;
         int width, height, bpp;
     public:
-        Texture(const Image &img, const std::vector<std::pair<int,int>> &texParams={});
+        Texture(const Image &img, const std::vector<std::pair<int,int>> &texParams={{GL_TEXTURE_MIN_FILTER, GL_NEAREST},{GL_TEXTURE_MAG_FILTER, GL_NEAREST},{GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE},{GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE}});
         ~Texture();
 
         void bind(unsigned int slot = 0) const;
