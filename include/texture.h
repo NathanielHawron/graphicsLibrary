@@ -6,23 +6,35 @@
 
 /*
     Tutorial:
-    Create texture using constructor
+    First, create image, then create texture using the image.
 	(note that the graphics namespace has been removed here for clarity, but is still required):
-    Texture texture = Texure(std::filesystem::path texturePath)
+    Image img("path to image");
+    Texture texture(img)
 
     The texture can now be bound to any supported channel:
     texture.bind(int channel);
 */
 
 namespace graphics{
+    struct Image{
+    private:
+        const bool stbiFree;
+    public:
+        uint8_t *buffer;
+        uint16_t *buffer16;
+        uint32_t *buffer32;
+        int width, height, bpp;
+    public:
+        Image(const std::filesystem::path &filepath, int bpp = 4);
+        Image(int width, int height, int bpp = 4);
+        ~Image();
+    };
     class Texture{
     private:
         unsigned int id;
-        std::filesystem::path path;
         int width, height, bpp;
     public:
-        typedef void (*textureCallback)(unsigned char *img, int width, int height, int bpp);
-        Texture(const std::filesystem::path &path, bool flipVerticallyOnLoad = true, textureCallback cb = nullptr);
+        Texture(const Image &img);
         ~Texture();
 
         void bind(unsigned int slot = 0) const;
