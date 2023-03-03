@@ -1,6 +1,8 @@
 #pragma once
 
 #include <filesystem>
+#include <vector>
+#include <utility>
 
 #include "glad/glad.h"
 
@@ -34,7 +36,7 @@ namespace graphics{
         unsigned int id;
         int width, height, bpp;
     public:
-        Texture(const Image &img);
+        Texture(const Image &img, const std::vector<std::pair<int,int>> &texParams={});
         ~Texture();
 
         void bind(unsigned int slot = 0) const;
