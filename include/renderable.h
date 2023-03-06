@@ -11,8 +11,10 @@ namespace graphics{
         ~Renderable();
         void init();
         inline unsigned int getIndexCount() const {return this->indexCount;};
-        void loadVertexData(const void *vertexData, unsigned int size);
-        void loadIndexData(const unsigned int *indexData, unsigned int count);
+        void loadVertexData(const void *vertexData, std::size_t size);
+        void loadIndexData(const GLuint *indexData, std::size_t count);
+        void loadIndexData(const GLushort *indexData, std::size_t count);
+        void loadIndexData(const GLubyte *indexData, std::size_t count);
         void setVBOLayout(const VertexBufferLayout &layout);
         void bindBuffers() const;
         void unbindBuffers() const;
@@ -20,5 +22,6 @@ namespace graphics{
     protected:
         unsigned int vao, vbo, ibo;
         unsigned int vertexCount, indexCount;
+        GLenum indexType;
     };
 }

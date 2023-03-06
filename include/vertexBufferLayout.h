@@ -10,9 +10,18 @@ namespace graphics{
         unsigned char normalized;
         static unsigned int getSizeOfType(unsigned int type){
             switch(type){
+                //Floating point numbers
+                case GL_HALF_FLOAT:     return sizeof(GLhalf);
                 case GL_FLOAT:          return sizeof(GLfloat);
+                case GL_DOUBLE:         return sizeof(GLdouble);
+                //Unsigned integers
+                case GL_UNSIGNED_BYTE:  return sizeof(GLubyte);
+                case GL_UNSIGNED_SHORT: return sizeof(GLushort);
                 case GL_UNSIGNED_INT:   return sizeof(GLuint);
-                case GL_UNSIGNED_BYTE:  return sizeof(GLbyte);
+                //Signed integers
+                case GL_BYTE:           return sizeof(GLbyte);
+                case GL_SHORT:          return sizeof(GLshort);
+                case GL_INT:            return sizeof(GLint);
             }
             return 0;
         }
