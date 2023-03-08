@@ -48,6 +48,7 @@ namespace graphics{
 		void setUniform2f(const std::string &name, float value[2]);
 		void setUniform3i(const std::string &name, int value[3]);
 		void setUniform3f(const std::string &name, float value[3]);
+		void setUniform3f(const std::string &name, glm::vec3 vec);
 		void setUniform4i(const std::string &name, int value[4]);
 		void setUniform4f(const std::string &name, float value[4]);
 		void setUniformMat4f(const std::string &name, glm::mat4 &matrix);

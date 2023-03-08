@@ -8,44 +8,19 @@
 #include <glad/glad.h>
 
 namespace graphics{
-    namespace vertex{
-        struct pos3ub_tex2us_color3ub{
-            uint8_t pos[3];
-            uint16_t texCoords[2];
-            uint8_t col[3];
-        };
-        struct position2f_texture2f{
-            float pos[2], texCoords[2];
-        };
-        struct position3f_texture2f{
-            float pos[3], texCoords[2];
-        };
-        struct position3f_color4f{
-            float pos[3];
-            uint8_t col[4];
-        };
-        struct position3f_texture2f_normal3f{
-            float pos[3], texCoords[2], norm[3];
-        };
-        struct position3f_texture2f_normalMap2f_color4b{
-            float pos[3], texCoords[2], normMap[2];
-            uint8_t col[4];
-        };
-        
-    };
-    template <class VT, class IT = GLuint>
+    template <class IT = GLuint>
     class Mesh{
     private:
-        std::vector<VT> vertexData;
+        const std::size_t vertexSize;
+        std::vector<uint32_t> vertexData;
         std::vector<IT> indexData;
     public:
-        Mesh();
-        Mesh(const VT *vertices, const IT *indices, std::size_t vertexCount, std::size_t indexCount);
+        Mesh(std::size_t vertexSize);
+        Mesh(const void *vertices, const IT *indices, std::size_t vertexSize, std::size_t vertexCount, std::size_t indexCount);
         ~Mesh();
+        void add(const void *vertices, const IT *indices, std::size_t vertexCount, std::size_t indexCount);
         void reserve(std::size_t vertices, std::size_t indices);
-        void add(const Mesh<VT,IT> &mesh);
-        void add(const std::array<Mesh<VT,IT>, 8> &meshes, uint8_t faces);
-        VT *getVertices();
+        void *getVertices();
         IT *getIndices();
         std::size_t getVertexCount();
         std::size_t getIndexCount();

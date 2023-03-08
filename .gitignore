@@ -5,6 +5,6 @@ res
 .vscode
 vendor
 src
-main.cpp
 makefile
 *.bash
+test

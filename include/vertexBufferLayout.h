@@ -7,7 +7,7 @@ namespace graphics{
     struct VertexBufferElement{
         unsigned int type;
         unsigned int count;
-        unsigned char normalized;
+        GLboolean normalized;
         static unsigned int getSizeOfType(unsigned int type){
             switch(type){
                 //Floating point numbers
@@ -33,8 +33,8 @@ namespace graphics{
         unsigned int stride;
     public:
         VertexBufferLayout():stride(0){};
-        void push(unsigned int type, unsigned int count){
-            elements.push_back({type, count, GL_FALSE});
+        void push(unsigned int type, unsigned int count, GLboolean normalized = GL_FALSE){
+            elements.push_back({type, count, normalized});
             stride+=count*VertexBufferElement::getSizeOfType(type);
         }
 
