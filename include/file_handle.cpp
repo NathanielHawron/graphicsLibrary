@@ -35,6 +35,7 @@ void graphics::FileHandle<sizetype>::readFile(std::filesystem::path &path){
     }else{
         this->flags |= FileHandle::FLAG_FAILED_TO_READ_FILE;
     }
+    file.close();
 }
 
 //Add data to buffer
