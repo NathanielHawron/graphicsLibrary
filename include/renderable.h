@@ -9,6 +9,7 @@ namespace graphics{
     public:
         Renderable();
         ~Renderable();
+        //Must be called in main thread
         void init();
         inline unsigned int getIndexCount() const {return this->indexCount;};
         void loadVertexData(const void *vertexData, std::size_t size);

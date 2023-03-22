@@ -19,6 +19,7 @@ namespace graphics{
         Mesh(const void *vertices, const IT *indices, std::size_t vertexSize, std::size_t vertexCount, std::size_t indexCount);
         ~Mesh();
         void add(const void *vertices, const IT *indices, std::size_t vertexCount, std::size_t indexCount);
+        void add(Mesh<IT> *mesh);
         void reserve(std::size_t vertices, std::size_t indices);
         void *getVertices();
         IT *getIndices();
