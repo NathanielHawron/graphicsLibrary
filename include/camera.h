@@ -9,8 +9,9 @@ namespace graphics{
         glm::vec3 pos;
         float yaw, pitch, roll;
         glm::mat4 projection;
+        float minPitch, maxPitch;
     public:
-        Camera(glm::vec3 pos, float yaw, float pitch, float roll);
+        Camera(glm::vec3 pos, float yaw, float pitch, float roll, float minPitch = -1.57079633f, float maxPitch = 1.57079633f);
         ~Camera();
         void setPos(glm::vec3 newPos);
         void addPos(glm::vec3 dPos);

@@ -15,6 +15,7 @@ namespace graphics{
         std::vector<uint32_t> vertexData;
         std::vector<IT> indexData;
     public:
+        //Size is in number of 4 byte blocks per vertex (to align with GPU)
         Mesh(std::size_t vertexSize);
         Mesh(const void *vertices, const IT *indices, std::size_t vertexSize, std::size_t vertexCount, std::size_t indexCount);
         ~Mesh();
