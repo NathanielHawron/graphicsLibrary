@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <unordered_map>
 
 namespace graphics{
     template <class sizetype = std::size_t>
@@ -22,6 +23,7 @@ namespace graphics{
         ~FileHandle();
         //Read file into buffer
         void readFile(std::filesystem::path &path);
+        
         //Add data to buffer
         template <class T>
         void addData(const T data);
@@ -32,6 +34,9 @@ namespace graphics{
         void addVector(const std::vector<T> &data);
         template <class T>
         void addVector(const T *data, std::size_t size);
+        template <class T>
+        void addUMapS(const std::unordered_map<std::string,T> &data);
+
         //Get data from buffer
         template <class T>
         T getData();
@@ -40,6 +45,9 @@ namespace graphics{
         std::string getString();
         template <class T>
         void getVector(std::vector<T> &res);
+        template <class T>
+        void getUMapS(std::unordered_map<std::string,T> &res);
+
         //Write buffer to file
         void writeData(std::filesystem::path &path);
         //Interact with buffer

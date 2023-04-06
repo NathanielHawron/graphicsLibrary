@@ -46,7 +46,6 @@ void graphics::FileHandle<sizetype>::addData(const T data){
         this->bytes.push_back(p[i]);
     }
 }
-
 template <class sizetype> template<class T>
 void graphics::FileHandle<sizetype>::addData(const T *data){
     const char *p = (char*)data;
@@ -73,6 +72,14 @@ void graphics::FileHandle<sizetype>::addVector(const T *data, std::size_t size){
     this->addData((sizetype)size);
     for(uint_fast32_t i=0;i<size;++i){
         this->addData(data[i]);
+    }
+}
+template <class sizetype> template <class T>
+void graphics::FileHandle<sizetype>::addUMapS(const std::unordered_map<std::string,T> &data){
+    this->addData((sizetype)data.size());
+    for(const auto & [key, value] : data){
+        this->addString(key);
+        this->addData(&value);
     }
 }
 
@@ -110,6 +117,14 @@ void graphics::FileHandle<sizetype>::getVector(std::vector<T> &res){
     sizetype size = this->getData<sizetype>();
     for(sizetype i=0;i<size;++i){
         res.push_back(this->getData<T>());
+    }
+}
+template <class sizetype> template <class T>
+void graphics::FileHandle<sizetype>::getUMapS(std::unordered_map<std::string,T> &res){
+    sizetype count = this->getData<sizetype>();
+    for(sizetype i=0;i<count;++i){
+        std::string s = this->getString();
+        res.emplace(s,this->getData<T>());
     }
 }
 
